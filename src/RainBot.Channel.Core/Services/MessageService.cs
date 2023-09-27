@@ -143,6 +143,6 @@ public class MessageService : IMessageService
             MessageStrings.RussianMessages.Value[MessageTypes.SingleNoRainPrefix],
             MessageStrings.RussianConditions.Value[notification.PreviousForecast.Condition],
             MessageStrings.RussianDayTimes.Value[notification.PreviousForecast.DayTime].ToLowerInvariant(),
-            notification.CurrentForecast.Date.ToString("dd MMMM", _cultureInfo),);
+            notification.CurrentForecast.Date.ToString("dd MMMM", _cultureInfo));
     }
 }
