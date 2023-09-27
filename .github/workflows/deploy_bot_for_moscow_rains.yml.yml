@@ -35,10 +35,5 @@ jobs:
       - name: Terraform initialization
         run: terraform init -backend-config="access_key=${{ secrets.MOSCOW_TERRAFORM_ACCESS_KEY }}" -backend-config="secret_key=${{ secrets.MOSCOW_TERRAFORM_SECRET_KEY }}" -backend-config="bucket=${{ secrets.MOSCOW_TERRAFORM_BUCKET_NAME }}"
 
-      - name: Terraform module initialization
-        run: |
-          cd rainbot_tf_module;
-          terraform init
-
       - name: Terraform apply
         run: terraform apply --auto-approve --parallelism=2
