@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.33808.371
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RainBot.Channel.Core", "RainBot.Channel.Core\RainBot.Channel.Core.csproj", "{D660652B-73FD-49DF-B425-DAD59622D197}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RainBot.Channel.ForecastHandler", "RainBot.Channel.ForecastHandler\RainBot.Channel.ForecastHandler.csproj", "{104ABECB-376D-4081-81A4-D8AFCB5A3C7B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RainBot.Channel.YandexWeatherFetcher", "RainBot.Channel.YandexWeatherFetcher\RainBot.Channel.YandexWeatherFetcher.csproj", "{4757452E-50F3-48A1-885E-50D12CD63748}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D660652B-73FD-49DF-B425-DAD59622D197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D660652B-73FD-49DF-B425-DAD59622D197}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D660652B-73FD-49DF-B425-DAD59622D197}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D660652B-73FD-49DF-B425-DAD59622D197}.Release|Any CPU.Build.0 = Release|Any CPU
+		{104ABECB-376D-4081-81A4-D8AFCB5A3C7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{104ABECB-376D-4081-81A4-D8AFCB5A3C7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{104ABECB-376D-4081-81A4-D8AFCB5A3C7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{104ABECB-376D-4081-81A4-D8AFCB5A3C7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4757452E-50F3-48A1-885E-50D12CD63748}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4757452E-50F3-48A1-885E-50D12CD63748}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4757452E-50F3-48A1-885E-50D12CD63748}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4757452E-50F3-48A1-885E-50D12CD63748}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0B56065F-C26D-4574-975C-B207536EB4D3}
+	EndGlobalSection
+EndGlobal
