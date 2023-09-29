@@ -113,7 +113,8 @@ public class NotificationService : INotificationService
                 // DB null, Api rain = send new message                                   
                 // DB clear without messageId, Api rain = send new message                     
                 if ((notification.Change == NotificationChange.RainOccured && string.IsNullOrWhiteSpace(notification.MessageId)) //||
-                   // (notification.PreviousForecast is null && isCurrentRainy) ||
+                    || notification.Change == NotificationChange.New
+                    // (notification.PreviousForecast is null && isCurrentRainy) ||
                     //(!isPreviousRainy && isCurrentRainy)
                     )
                 {

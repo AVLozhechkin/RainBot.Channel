@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using CommunityToolkit.Diagnostics;
 using RainBot.Channel.Core.Models;
 
@@ -46,7 +45,7 @@ public static class MessageStrings
            { "overcast", "Пасмурная погода"},
            { "clear", "Ясная погода" },
            { "cloudy", "Облачная погода" },
-           { "partly-cloudy", "Частичная облачность" } 
+           { "partly-cloudy", "Частичная облачность" }
        });
 
     public static readonly Lazy<Dictionary<DayTime, string>> RussianDayTimes = new Lazy<Dictionary<DayTime, string>>(
