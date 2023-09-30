@@ -9,6 +9,7 @@ public class MessageService : IMessageService
     private readonly string _latitude;
     private readonly string _longitude;
     private static CultureInfo _cultureInfo = new CultureInfo("ru-RU");
+    private const string DateFormat = "d MMMM";
 
     public MessageService(string latitude, string longitude)
     {
@@ -62,9 +63,9 @@ public class MessageService : IMessageService
             return string.Format(
             MessageStrings.RussianMessages.Value[MessageTypes.WeatherTemplateForSameConditions],
             MessageStrings.RussianDayTimes.Value[notifications[0].CurrentForecast.DayTime].ToLowerInvariant(),
-            notifications[0].CurrentForecast.Date.ToString("dd MMMM", _cultureInfo),
+            notifications[0].CurrentForecast.Date.ToString(DateFormat, _cultureInfo),
             MessageStrings.RussianDayTimes.Value[notifications[1].CurrentForecast.DayTime].ToLowerInvariant(),
-            notifications[1].CurrentForecast.Date.ToString("dd MMMM", _cultureInfo),
+            notifications[1].CurrentForecast.Date.ToString(DateFormat, _cultureInfo),
             MessageStrings.RussianConditions.Value[notifications[0].CurrentForecast.Condition].ToLowerInvariant());
         }
 
@@ -72,9 +73,9 @@ public class MessageService : IMessageService
             MessageStrings.RussianMessages.Value[MessageTypes.WeatherTemplateForDifferentConditions],
             MessageStrings.RussianConditions.Value[notifications[0].CurrentForecast.Condition].ToLowerInvariant(),
             MessageStrings.RussianDayTimes.Value[notifications[0].CurrentForecast.DayTime].ToLowerInvariant(),
-            notifications[0].CurrentForecast.Date.ToString("dd MMMM", _cultureInfo),
+            notifications[0].CurrentForecast.Date.ToString(DateFormat, _cultureInfo),
             MessageStrings.RussianDayTimes.Value[notifications[1].CurrentForecast.DayTime].ToLowerInvariant(),
-            notifications[1].CurrentForecast.Date.ToString("dd MMMM", _cultureInfo),
+            notifications[1].CurrentForecast.Date.ToString(DateFormat, _cultureInfo),
             MessageStrings.RussianConditions.Value[notifications[1].CurrentForecast.Condition].ToLowerInvariant());
     }
 
@@ -86,7 +87,7 @@ public class MessageService : IMessageService
         return string.Format(
             MessageStrings.RussianMessages.Value[MessageTypes.WeatherTemplateForOneRecord],
             MessageStrings.RussianDayTimes.Value[notification.CurrentForecast.DayTime].ToLowerInvariant(),
-            notification.CurrentForecast.Date.ToString("dd MMMM", _cultureInfo),
+            notification.CurrentForecast.Date.ToString(DateFormat, _cultureInfo),
             MessageStrings.RussianConditions.Value[notification.CurrentForecast.Condition].ToLowerInvariant()
         );
     }
@@ -103,10 +104,10 @@ public class MessageService : IMessageService
             return string.Format(
             MessageStrings.RussianMessages.Value[MessageTypes.DoubleNoDifferentRainsPrefix],
             MessageStrings.RussianDayTimes.Value[notifications[0].CurrentForecast.DayTime],
-            notifications[0].CurrentForecast.Date.ToString("dd MMMM", _cultureInfo),
+            notifications[0].CurrentForecast.Date.ToString(DateFormat, _cultureInfo),
             MessageStrings.RussianConditions.Value[notifications[0].CurrentForecast.Condition].ToLowerInvariant(),
             MessageStrings.RussianDayTimes.Value[notifications[1].CurrentForecast.DayTime].ToLowerInvariant(),
-            notifications[1].CurrentForecast.Date.ToString("dd MMMM", _cultureInfo),
+            notifications[1].CurrentForecast.Date.ToString(DateFormat, _cultureInfo),
             MessageStrings.RussianConditions.Value[notifications[1].CurrentForecast.Condition].ToLowerInvariant());
         }
 
@@ -116,7 +117,7 @@ public class MessageService : IMessageService
             MessageStrings.RussianMessages.Value[MessageTypes.DoubleNoSameRainsSameDatePrefix],
             MessageStrings.RussianDayTimes.Value[notifications[0].CurrentForecast.DayTime],
             MessageStrings.RussianDayTimes.Value[notifications[1].CurrentForecast.DayTime].ToLowerInvariant(),
-            notifications[0].CurrentForecast.Date.ToString("dd MMMM", _cultureInfo),
+            notifications[0].CurrentForecast.Date.ToString(DateFormat, _cultureInfo),
             MessageStrings.RussianConditions.Value[notifications[1].CurrentForecast.Condition].ToLowerInvariant()
         );
         }
@@ -124,9 +125,9 @@ public class MessageService : IMessageService
         return string.Format(
             MessageStrings.RussianMessages.Value[MessageTypes.DoubleNoSameRainsPrefix],
             MessageStrings.RussianDayTimes.Value[notifications[0].CurrentForecast.DayTime],
-            notifications[0].CurrentForecast.Date.ToString("dd MMMM", _cultureInfo),
+            notifications[0].CurrentForecast.Date.ToString(DateFormat, _cultureInfo),
             MessageStrings.RussianDayTimes.Value[notifications[1].CurrentForecast.DayTime].ToLowerInvariant(),
-            notifications[1].CurrentForecast.Date.ToString("dd MMMM", _cultureInfo),
+            notifications[1].CurrentForecast.Date.ToString(DateFormat, _cultureInfo),
             MessageStrings.RussianConditions.Value[notifications[1].CurrentForecast.Condition].ToLowerInvariant()
         );
     }
@@ -143,6 +144,6 @@ public class MessageService : IMessageService
             MessageStrings.RussianMessages.Value[MessageTypes.SingleNoRainPrefix],
             MessageStrings.RussianConditions.Value[notification.PreviousForecast.Condition],
             MessageStrings.RussianDayTimes.Value[notification.PreviousForecast.DayTime].ToLowerInvariant(),
-            notification.CurrentForecast.Date.ToString("dd MMMM", _cultureInfo));
+            notification.CurrentForecast.Date.ToString(DateFormat, _cultureInfo));
     }
 }
