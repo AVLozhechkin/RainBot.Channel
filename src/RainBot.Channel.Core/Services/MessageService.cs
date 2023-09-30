@@ -104,10 +104,8 @@ public class MessageService : IMessageService
             return string.Format(
             MessageStrings.RussianMessages.Value[MessageTypes.DoubleNoDifferentRainsPrefix],
             MessageStrings.RussianDayTimes.Value[notifications[0].CurrentForecast.DayTime],
-            notifications[0].CurrentForecast.Date.ToString(DateFormat, _cultureInfo),
             MessageStrings.RussianConditions.Value[notifications[0].CurrentForecast.Condition].ToLowerInvariant(),
             MessageStrings.RussianDayTimes.Value[notifications[1].CurrentForecast.DayTime].ToLowerInvariant(),
-            notifications[1].CurrentForecast.Date.ToString(DateFormat, _cultureInfo),
             MessageStrings.RussianConditions.Value[notifications[1].CurrentForecast.Condition].ToLowerInvariant());
         }
 
@@ -117,7 +115,6 @@ public class MessageService : IMessageService
             MessageStrings.RussianMessages.Value[MessageTypes.DoubleNoSameRainsSameDatePrefix],
             MessageStrings.RussianDayTimes.Value[notifications[0].CurrentForecast.DayTime],
             MessageStrings.RussianDayTimes.Value[notifications[1].CurrentForecast.DayTime].ToLowerInvariant(),
-            notifications[0].CurrentForecast.Date.ToString(DateFormat, _cultureInfo),
             MessageStrings.RussianConditions.Value[notifications[1].CurrentForecast.Condition].ToLowerInvariant()
         );
         }
@@ -125,9 +122,7 @@ public class MessageService : IMessageService
         return string.Format(
             MessageStrings.RussianMessages.Value[MessageTypes.DoubleNoSameRainsPrefix],
             MessageStrings.RussianDayTimes.Value[notifications[0].CurrentForecast.DayTime],
-            notifications[0].CurrentForecast.Date.ToString(DateFormat, _cultureInfo),
             MessageStrings.RussianDayTimes.Value[notifications[1].CurrentForecast.DayTime].ToLowerInvariant(),
-            notifications[1].CurrentForecast.Date.ToString(DateFormat, _cultureInfo),
             MessageStrings.RussianConditions.Value[notifications[1].CurrentForecast.Condition].ToLowerInvariant()
         );
     }
