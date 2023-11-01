@@ -7,8 +7,8 @@ RainBot.Channel - это бот для Телеграма, который при
 В данный момент проект на паузе, так как я пытаюсь найти формат сообщений получше. Чтобы он не был похож на спам.
 
 Каналы выглядят вот так:
-Московские дожди: https://t.me/moscow_rains
-Петербургские дожди: https://t.me/spb_rains
+- Московские дожди: https://t.me/moscow_rains
+- Петербургские дожди: https://t.me/spb_rains
 <img src="./docs/assets/spb-rains-channel.png" alt="drawing" width="400"/>
 
 ### Стек
