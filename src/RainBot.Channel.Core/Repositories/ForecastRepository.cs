@@ -43,8 +43,8 @@ WHERE date = $date1 and dayTime = $dayTime1 or date = $date2 and dayTime = $dayT
                         { "$dayTime2", YdbValue.MakeUint8((byte) forecasts[1].DayTime) }
                 },
                 txControl: TxControl.BeginSerializableRW().Commit()
-            );
-        });
+            ).ConfigureAwait(false);
+        }).ConfigureAwait(false);
 
         response.Status.EnsureSuccess();
 
@@ -108,11 +108,11 @@ SELECT * FROM AS_TABLE($forecasts);
         var sessionResult = await tableClient.SessionExec(async session =>
         {
             return await session.ExecuteDataQuery(
-            query: query,
-            parameters: forecastsList,
-            txControl: TxControl.BeginSerializableRW().Commit()
-        );
-        });
+                query: query,
+                parameters: forecastsList,
+                txControl: TxControl.BeginSerializableRW().Commit()
+            ).ConfigureAwait(false);
+        }).ConfigureAwait(false);
 
         sessionResult.Status.EnsureSuccess();
     }

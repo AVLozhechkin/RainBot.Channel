@@ -41,7 +41,7 @@ public class Handler
         httpClient.DefaultRequestHeaders.Add("X-Yandex-API-Key", yaWeatherApiKey);
 
         var weatherService = new WeatherService(ymqService, httpClient, _forecastHandlerQueue);
-        await weatherService.FetchAndForwardForecastAsync(latitude, longitude);
+        await weatherService.FetchAndForwardForecastAsync(latitude, longitude).ConfigureAwait(false);
 
         return new Response(200, string.Empty);
     }

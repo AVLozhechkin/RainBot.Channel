@@ -17,6 +17,7 @@ public static class MessageStrings
     public static readonly Lazy<Dictionary<MessageTypes, string>> RussianMessages = new Lazy<Dictionary<MessageTypes, string>>(
         () => new Dictionary<MessageTypes, string>
         {
+            { MessageTypes.NightDayTime, "в ночь с {0} на" },
             { MessageTypes.SingleNoRainPrefix, "{0} {1} отменяется. "},
             { MessageTypes.DoubleNoDifferentRainsPrefix, "{0} отменяется {1}, а {2} отменяется {3}. "},
             { MessageTypes.DoubleNoSameRainsSameDatePrefix, "{0} и {1} отменяется {2}. "},

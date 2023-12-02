@@ -8,5 +8,6 @@ public enum MessageTypes
     WeatherTemplateForOneRecord,
     WeatherTemplateForSameConditions,
     WeatherTemplateForDifferentConditions,
-    DoubleNoSameRainsSameDatePrefix
+    DoubleNoSameRainsSameDatePrefix,
+    NightDayTime
 }

@@ -28,7 +28,9 @@ public class YmqService : IMessageQueueService
         Guard.IsNotNullOrWhiteSpace(message);
         Guard.IsNotNull(queueUrl);
 
-        await _client.SendMessageAsync(queueUrl.AbsoluteUri, message);
+        await _client
+            .SendMessageAsync(queueUrl.AbsoluteUri, message)
+            .ConfigureAwait(false);
     }
     public async Task SendMessageAsync(object message, Uri queueUrl)
     {
@@ -36,7 +38,9 @@ public class YmqService : IMessageQueueService
         Guard.IsNotNull(queueUrl);
 
         var serializedMessage = JsonSerializer.Serialize(message);
-        await _client.SendMessageAsync(queueUrl.AbsoluteUri, serializedMessage);
+        await _client
+            .SendMessageAsync(queueUrl.AbsoluteUri, serializedMessage)
+            .ConfigureAwait(false);
     }
 
     protected virtual void Dispose(bool disposing)

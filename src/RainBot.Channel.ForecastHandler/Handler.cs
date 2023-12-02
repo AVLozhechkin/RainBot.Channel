@@ -42,7 +42,7 @@ public class Handler
         Guard.HasSizeEqualTo(forecastsFromApi, 2);
 
         using var driver = DriverExtensions.Build(_databasePath, serviceToken.AccessToken);
-        await driver.Initialize();
+        await driver.Initialize().ConfigureAwait(false);
 
         var forecastRepository = new ForecastRepository(driver);
         var telegramBotService = new TelegramBotService(_telegramToken, _telegramChannel);
@@ -51,13 +51,13 @@ public class Handler
         var notificationService = new NotificationService(telegramBotService, messageService);
         var forecastService = new ForecastService(forecastRepository);
 
-        var forecastsFromDb = await forecastService.GetForecastPairsFromDb(forecastsFromApi);
+        var forecastsFromDb = await forecastService.GetForecastPairsFromDb(forecastsFromApi).ConfigureAwait(false);
         Console.WriteLine("Forecasts from database: " + JsonSerializer.Serialize(forecastsFromDb));
 
-        var updatedForecastsFromApi = await notificationService.SendNotifications(forecastsFromDb, forecastsFromApi);
+        var updatedForecastsFromApi = await notificationService.SendNotifications(forecastsFromDb, forecastsFromApi).ConfigureAwait(false);
         Console.WriteLine("Updated forecasts: " + JsonSerializer.Serialize(updatedForecastsFromApi));
 
-        await forecastService.UpsertForecasts(updatedForecastsFromApi);
+        await forecastService.UpsertForecasts(updatedForecastsFromApi).ConfigureAwait(false);
 
 
         return new Response(200, string.Empty);

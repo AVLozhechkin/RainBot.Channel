@@ -15,8 +15,12 @@ public class ForecastService : IForecastService
     }
 
     public async Task<IReadOnlyList<Forecast>> GetForecastPairsFromDb(IReadOnlyList<Forecast> forecastsFromApi) =>
-        await _forecastRepository.GetForecastsByPKAsync(forecastsFromApi);
+        await _forecastRepository
+            .GetForecastsByPKAsync(forecastsFromApi)
+            .ConfigureAwait(false);
 
     public async Task UpsertForecasts(IReadOnlyList<Forecast> forecasts) =>
-        await _forecastRepository.UpsertForecastsAsync(forecasts);
+        await _forecastRepository
+            .UpsertForecastsAsync(forecasts)
+            .ConfigureAwait(false);
 }

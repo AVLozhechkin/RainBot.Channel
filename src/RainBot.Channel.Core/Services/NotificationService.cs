@@ -34,7 +34,9 @@ public class NotificationService : INotificationService
             if (notifications[0].MessageId is null)
             {
                 string messageText = _messageService.BuildMessage(notifications);
-                var messageId = await _botService.SendMessageAsync(messageText);
+                var messageId = await _botService
+                    .SendMessageAsync(messageText)
+                    .ConfigureAwait(false);
 
                 notifications.ForEach(n => n.CurrentForecast.ChannelPostId = messageId);
 
@@ -47,17 +49,23 @@ public class NotificationService : INotificationService
             if (firstNotification == secondNotification && firstNotification == NotificationChange.RainConditionChanged)
             {
                 string messageText = _messageService.BuildMessage(notifications);
-                await _botService.EditMessageAsync(notifications[0].MessageId, messageText);
+                await _botService
+                    .EditMessageAsync(notifications[0].MessageId, messageText)
+                    .ConfigureAwait(false);
                 return currentForecasts;
             }
 
             if (firstNotification == secondNotification)
             {
-                await _botService.DeleteMessageAsync(notifications[0].MessageId);
+                await _botService
+                    .DeleteMessageAsync(notifications[0].MessageId)
+                    .ConfigureAwait(false);
 
                 string messageText = _messageService.BuildMessage(notifications);
 
-                var messageId = await _botService.SendMessageAsync(messageText, firstNotification == NotificationChange.RainCanceled);
+                var messageId = await _botService
+                    .SendMessageAsync(messageText, firstNotification == NotificationChange.RainCanceled)
+                    .ConfigureAwait(false);
 
                 notifications.ForEach(n => n.CurrentForecast.ChannelPostId = messageId);
 
@@ -72,14 +80,17 @@ public class NotificationService : INotificationService
             {
                 var editMessage = firstNotification == NotificationChange.RainConditionChanged ? notifications[0] : notifications[1];
 
-                await _botService.EditMessageAsync(editMessage.MessageId, _messageService.BuildMessage(editMessage));
+                await _botService
+                    .EditMessageAsync(editMessage.MessageId, _messageService.BuildMessage(editMessage))
+                    .ConfigureAwait(false);
 
                 var sendMessage = firstNotification == NotificationChange.RainConditionChanged ? notifications[1] : notifications[0];
 
                 sendMessage.CurrentForecast.ChannelPostId = await _botService
                     .SendMessageAsync(
                         _messageService.BuildMessage(sendMessage),
-                        sendMessage.Change == NotificationChange.RainCanceled);
+                        sendMessage.Change == NotificationChange.RainCanceled)
+                    .ConfigureAwait(false);
 
                 return currentForecasts;
             }
@@ -90,11 +101,15 @@ public class NotificationService : INotificationService
                 var editMessage = firstNotification == NotificationChange.RainCanceled ? notifications[0] : notifications[1];
                 string messageText = _messageService.BuildMessage(editMessage);
                 Console.WriteLine(JsonSerializer.Serialize(editMessage));
-                await _botService.EditMessageAsync(editMessage.MessageId, messageText);
+                await _botService
+                    .EditMessageAsync(editMessage.MessageId, messageText)
+                    .ConfigureAwait(false);
 
                 var sendMessage = firstNotification == NotificationChange.RainCanceled ? notifications[1] : notifications[0];
                 messageText = _messageService.BuildMessage(sendMessage);
-                sendMessage.CurrentForecast.ChannelPostId = await _botService.SendMessageAsync(messageText);
+                sendMessage.CurrentForecast.ChannelPostId = await _botService
+                    .SendMessageAsync(messageText)
+                    .ConfigureAwait(false);
 
                 return currentForecasts;
             }
@@ -118,7 +133,9 @@ public class NotificationService : INotificationService
                     //(!isPreviousRainy && isCurrentRainy)
                     )
                 {
-                    notification.CurrentForecast.ChannelPostId = await _botService.SendMessageAsync(messageText);
+                    notification.CurrentForecast.ChannelPostId = await _botService
+                        .SendMessageAsync(messageText)
+                        .ConfigureAwait(false);
 
                     continue;
                 }
@@ -126,7 +143,9 @@ public class NotificationService : INotificationService
                 // DB rain, Api rain (different conditions)
                 if (notification.Change == NotificationChange.RainConditionChanged)
                 {
-                    await _botService.EditMessageAsync(notification.MessageId, messageText);
+                    await _botService
+                        .EditMessageAsync(notification.MessageId, messageText)
+                        .ConfigureAwait(false);
 
                     continue;
                 }
@@ -135,9 +154,13 @@ public class NotificationService : INotificationService
                 // DB clear (with message id), Api rain = delete old, send new message    - DELETE, SEND
                 if (isPreviousRainy ^ isCurrentRainy)
                 {
-                    await _botService.DeleteMessageAsync(notification.MessageId);
+                    await _botService
+                        .DeleteMessageAsync(notification.MessageId)
+                        .ConfigureAwait(false);
 
-                    notification.CurrentForecast.ChannelPostId = await _botService.SendMessageAsync(messageText, !isCurrentRainy);
+                    notification.CurrentForecast.ChannelPostId = await _botService
+                        .SendMessageAsync(messageText, !isCurrentRainy)
+                        .ConfigureAwait(false);
                 }
             }
 

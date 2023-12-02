@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
@@ -17,15 +18,28 @@ public class TelegramBotService : IBotService
     }
     public async Task<string> SendMessageAsync(string messageText, bool isSilent = false)
     {
-        var message = await _botClient.SendTextMessageAsync(_telegramChannelId, messageText, parseMode: ParseMode.Markdown, disableWebPagePreview: true, disableNotification: isSilent);
+        var message = await _botClient
+            .SendTextMessageAsync(
+                _telegramChannelId, 
+                messageText, 
+                parseMode: ParseMode.Markdown, 
+                disableWebPagePreview: true, 
+                disableNotification: isSilent)
+            .ConfigureAwait(false);
 
-        return message.MessageId.ToString();
+        return message.MessageId.ToString(CultureInfo.InvariantCulture);
     }
     public async Task EditMessageAsync(string messageId, string messageText)
     {
         try
         {
-            await _botClient.EditMessageTextAsync(_telegramChannelId, int.Parse(messageId), messageText, ParseMode.Markdown, disableWebPagePreview: true);
+            await _botClient
+                .EditMessageTextAsync(
+                    _telegramChannelId, 
+                    int.Parse(messageId, CultureInfo.InvariantCulture), 
+                    messageText, ParseMode.Markdown, 
+                    disableWebPagePreview: true)
+                .ConfigureAwait(false);
         }
         catch (ApiRequestException ex) when (ex.Message.Equals("Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message", StringComparison.Ordinal))
         {
@@ -36,6 +50,8 @@ public class TelegramBotService : IBotService
     }
     public async Task DeleteMessageAsync(string messageId)
     {
-        await _botClient.DeleteMessageAsync(_telegramChannelId, int.Parse(messageId));
+        await _botClient
+            .DeleteMessageAsync(_telegramChannelId, int.Parse(messageId, CultureInfo.InvariantCulture))
+            .ConfigureAwait(false);
     }
 }

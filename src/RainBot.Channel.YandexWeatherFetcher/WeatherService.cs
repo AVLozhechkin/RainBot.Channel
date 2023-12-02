@@ -11,6 +11,7 @@ namespace RainBot.Channel.YandexWeatherFetcher;
 
 internal sealed class WeatherService
 {
+    private const string ApiUri = $"https://api.weather.yandex.ru/v2/informers";
     private readonly IMessageQueueService _ymqService;
     private readonly HttpClient _http;
     private readonly Uri _forecastHandlerQueue;
@@ -23,11 +24,15 @@ internal sealed class WeatherService
     }
     internal async Task FetchAndForwardForecastAsync(string latitude, string longitude)
     {
-        var result = await _http.GetFromJsonAsync<InformersResponse>($"https://api.weather.yandex.ru/v2/informers?lat={latitude}&lon={longitude}");
+        var result = await _http
+            .GetFromJsonAsync<InformersResponse>($"{ApiUri}?lat={latitude}&lon={longitude}")
+            .ConfigureAwait(false);
 
         var forecasts = MapPartsToForecasts(result.Forecast);
 
-        await _ymqService.SendMessageAsync(forecasts, _forecastHandlerQueue);
+        await _ymqService
+            .SendMessageAsync(forecasts, _forecastHandlerQueue)
+            .ConfigureAwait(false);
     }
 
     private static MyForecast[] MapPartsToForecasts(Forecast forecast)
