@@ -8,7 +8,7 @@ public class MessageService : IMessageService
 {
     private readonly string _latitude;
     private readonly string _longitude;
-    private static CultureInfo _cultureInfo = new CultureInfo("ru-RU");
+    private static readonly CultureInfo _cultureInfo = new CultureInfo("ru-RU");
     private const string DateFormat = "d MMMM";
 
     public MessageService(string latitude, string longitude)
